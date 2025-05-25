@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ProductFactory extends Factory
 {
     protected $model = Product::class;
-
+    private static $number = 1;
     /**
      * Define the model's default state.
      *
@@ -21,10 +21,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->words(3, true),
+            'name' => 'Product ' . self::$number++,
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'barcode' => $this->faker->unique()->ean13,
-            'category_id' => Category::factory(),
+            'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
 }

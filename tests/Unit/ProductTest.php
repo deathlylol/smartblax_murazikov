@@ -46,7 +46,6 @@ class ProductTest extends TestCase
             ->andReturn($expectedProduct);
 
         $result = $this->productService->create($productData);
-
         $this->assertInstanceOf(Product::class, $result);
         $this->assertEquals($productData['name'], $result->name);
         $this->assertEquals($productData['price'], $result->price);
